@@ -7,13 +7,14 @@ import org.testng.annotations.Test;
 
 import pageClasses.HomePageClass;
 import pageClasses.LoginPageClass;
+import retryAnalyzer.RetryAnalyzer;
 
 public class HomePageTextClass extends BaseClass {
 
 	LoginPageClass lp;
 	HomePageClass hp;
 
-	@Test(priority = 2,groups = {"group3"})
+	@Test(priority = 2,groups = {"group3"},retryAnalyzer = RetryAnalyzer.class)
 	
 	public void verifyFindPatientRecordLinkIsDisplayed() throws IOException {
 		lp = new LoginPageClass(driver);
@@ -23,7 +24,7 @@ public class HomePageTextClass extends BaseClass {
 				"Find Patient Record link is not displayed on the home page.");
 	}
 
-	@Test(priority = 1,groups = {"group3"})
+	@Test(priority = 1,groups = {"group3"},retryAnalyzer = RetryAnalyzer.class)
 	public void verifyRegisterAPatientLinkIeDisplayedOnHomePage() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));
@@ -34,7 +35,7 @@ public class HomePageTextClass extends BaseClass {
 
 	}
 
-	@Test(priority = 3,groups = {"group1"})
+	@Test(priority = 3,groups = {"group1"},retryAnalyzer = RetryAnalyzer.class)
 	public void verifyLogoutFunctionality() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));
@@ -46,7 +47,7 @@ public class HomePageTextClass extends BaseClass {
 		Assert.assertTrue(currentUrl.contains("login.htm"), "Logout was not successful.");
 	}
 
-	@Test(priority = 4,groups = {"group3"})
+	@Test(priority = 4,groups = {"group3"},retryAnalyzer = RetryAnalyzer.class)
 	public void verifyAdminDropdownMyAccountAndHomeIcon() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));

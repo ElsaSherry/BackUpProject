@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import pageClasses.HomePageClass;
 import pageClasses.LoginPageClass;
 import pageClasses.RegiterAPatientClass;
+import retryAnalyzer.RetryAnalyzer;
 
 public class RegisterAPatientTextClass extends BaseClass {
 	LoginPageClass lp;
@@ -15,7 +16,7 @@ public class RegisterAPatientTextClass extends BaseClass {
 	RegiterAPatientClass rap; 
 	
  
-	@Test(groups = {"group2"})
+	@Test(groups = {"group2"},retryAnalyzer = RetryAnalyzer.class)
 	public void verifyToSelecttheButtonToGoToRegiterAPatientPage() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));

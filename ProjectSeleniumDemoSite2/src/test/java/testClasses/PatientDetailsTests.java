@@ -9,6 +9,7 @@ import pageClasses.FindPatientRecordPage;
 import pageClasses.HomePageClass;
 import pageClasses.LoginPageClass;
 import pageClasses.PatientDetailsPage;
+import retryAnalyzer.RetryAnalyzer;
 
 public class PatientDetailsTests extends BaseClass { 
 	LoginPageClass lp;
@@ -17,7 +18,7 @@ public class PatientDetailsTests extends BaseClass {
 	FindPatientRecordPage fpr = new FindPatientRecordPage(driver);
 	PatientDetailsPage pdp = new PatientDetailsPage(driver);
 
-	@Test(priority = 2,groups = {"group1"})
+	@Test(priority = 2,groups = {"group1"},retryAnalyzer = RetryAnalyzer.class)
 	public void verifyNavigationToFindPatientRecordPage() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));
@@ -32,7 +33,7 @@ public class PatientDetailsTests extends BaseClass {
 				"Navigation to Find Patient Record page was not successful.");
 	}
 
-	@Test(priority = 1,groups = {"group1"})
+	@Test(priority = 1,groups = {"group1"},retryAnalyzer = RetryAnalyzer.class)
 	public void verifySearchFunctionality() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));
@@ -47,7 +48,7 @@ public class PatientDetailsTests extends BaseClass {
 		Assert.assertTrue(fpr.isSearchResultsTableDisplayed(), "Search results are not displayed.");
 	}
 
-	@Test(priority = 4,groups = {"group2"})
+	@Test(priority = 4,groups = {"group2"},retryAnalyzer = RetryAnalyzer.class)
 	public void testFindPatientByName() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));
@@ -62,7 +63,7 @@ public class PatientDetailsTests extends BaseClass {
 		Assert.assertTrue(resultsCount > 0, "No patients found with the name 'Amy'");
 	}
 
-	@Test(priority = 3,groups = {"group2"})
+	@Test(priority = 3,groups = {"group2"},retryAnalyzer = RetryAnalyzer.class)
 	public void testFindPatientByIdentifier() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));
@@ -78,7 +79,7 @@ public class PatientDetailsTests extends BaseClass {
 		Assert.assertTrue(resultsCount > 0, "No patients found with the identifier '1002KJ'");
 	}
 
-	@Test(priority = 5,groups = {"group3"})
+	@Test(priority = 5,groups = {"group3"},retryAnalyzer = RetryAnalyzer.class)
 	public void testFindPatientAndVerifyGender() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));
@@ -93,7 +94,7 @@ public class PatientDetailsTests extends BaseClass {
 		Assert.assertNotNull(firstResultGender, "First result gender is null");
 	}
 
-	@Test(priority = 6,groups = {"group3"})
+	@Test(priority = 6,groups = {"group3"},retryAnalyzer = RetryAnalyzer.class)
 	public void testFindPatientAndVerifyAge() throws IOException {
 		lp = new LoginPageClass(driver);
 		lp.login(lp.readStringData(1, 0), lp.readStringData(1, 1));
@@ -108,7 +109,7 @@ public class PatientDetailsTests extends BaseClass {
 		Assert.assertNotNull(firstResultAge, "First result age is null");
 	}
 
-	@Test(priority = 7,groups = {"group2"})
+	@Test(priority = 7,groups = {"group2"},retryAnalyzer = RetryAnalyzer.class)
 	public void testFindPatientCaseInsensitive() {
 		lp = new LoginPageClass(driver);
 		lp.login("admin", "Admin123");
@@ -122,7 +123,7 @@ public class PatientDetailsTests extends BaseClass {
 		Assert.assertTrue(resultsCount > 0, "No patients found with the name 'john' in case-insensitive search");
 	}
 
-	@Test(priority = 8,groups = {"group3"})
+	@Test(priority = 8,groups = {"group3"},retryAnalyzer = RetryAnalyzer.class)
 	public void testFindPatientPartialName() {
 		lp = new LoginPageClass(driver);
 		lp.login("admin", "Admin123");
